@@ -1,0 +1,20 @@
+# Base image with C++ build tools
+FROM ubuntu:22.04
+
+# Install OpenSSL and build tools
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libssl-dev \
+    ca-certificates
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy project files into the container
+COPY . .
+
+# Build the C++ program with OpenSSL
+RUN g++ demo.cpp Person.cpp -o demo -lssl -lcrypto
+
+# Run the program
+CMD ["./demo"]
