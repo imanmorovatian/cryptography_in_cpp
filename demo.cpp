@@ -36,5 +36,7 @@ int main() {
 
     EVP_cleanup();
 
+    std::cout << "===============" << OpenSSL_version(OPENSSL_VERSION) << "===============" << std::endl;
+
     return 0;
 }
